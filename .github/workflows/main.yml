@@ -56,7 +56,7 @@ jobs:
           else
           tar czvf "${release_name}.tar.gz" "$release_name"
           fi
-
+          ls -la
           # Delete output directory
           rm -r "$release_name"
 
