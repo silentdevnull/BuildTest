@@ -38,7 +38,9 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
-          global-json-file: global.json
+          dotnet-version: '8.x.x'
+          dotnet-quality: 'preview'
+          
 
       - name: Build
         shell: bash
