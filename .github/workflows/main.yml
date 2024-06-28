@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-release:
+  release:
     name: Release
     strategy:
       matrix:
@@ -38,7 +38,7 @@ release:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.1.100
+          dotnet-version: 8
 
       - name: Build
         shell: bash
@@ -47,7 +47,7 @@ release:
           release_name="App-$tag-${{ matrix.target }}"
 
           # Build everything
-          dotnet publish src/App/App.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" --self-contained true
+          dotnet publish src/buildtest/buildtest.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" --self-contained true
 
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
@@ -61,7 +61,7 @@ release:
           rm -r "$release_name"
 
       - name: Publish
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: "App*"
         env:
