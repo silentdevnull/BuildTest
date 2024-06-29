@@ -79,3 +79,5 @@ jobs:
         with:
           tag_name: $(git describe --tags --abbrev=0)
           files: ${release_name}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
