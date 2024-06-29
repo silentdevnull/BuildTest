@@ -45,7 +45,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          tag=$(git describe --tags --abbrev=0)
+          tag=1.0.4
           release_name="App-$tag-${{ matrix.target }}"
 
           # Build everything
@@ -58,7 +58,7 @@ jobs:
           else
           tar czvf "${release_name}.tar.gz" "$release_name"
           fi
-
+          ls -la
           # Delete output directory
           rm -r "$release_name"
 
