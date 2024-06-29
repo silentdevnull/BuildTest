@@ -37,15 +37,8 @@ jobs:
         with:
           fetch-depth: 500
 
-        
-      - name: GitTags
-        run: |
-          git fetch --tags
-          git describe --tags
-          gtags=$(git describe --tags)
-          gtagss=$(git describe --tags --abbrev=0)
-          echo $gtags
-          echo $gtagss
+      - name: git ref
+        run: echo ${{ github.ref }}
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
@@ -77,6 +70,7 @@ jobs:
 
       - name: Publish
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: "App*"
         env:
