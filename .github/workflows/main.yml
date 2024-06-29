@@ -39,6 +39,7 @@ jobs:
         
       - name: GitTags
         run: |
+          git fetch --tags
           git describe --tags
           gtags=$(git describe --tags)
           gtagss=$(git describe --tags --abbrev=0)
