@@ -52,7 +52,7 @@ jobs:
           tag=$(git describe --tags --abbrev=0 --always)
           release_name="App-$tag-${{ matrix.target }}"
 
-          dotnet clean
+          dotnet clean 
           dotnet restore
 
           # Build everything
