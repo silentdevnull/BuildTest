@@ -77,5 +77,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: $(git describe --tags --abbrev=0)
-          files: ${release_name}.tar.gz
+          files: "App*"
           token: ${{ github.TEST }}
