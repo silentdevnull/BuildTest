@@ -27,7 +27,7 @@ jobs:
           - kind: windows
             os: windows-latest
             target: win-x64
-          - kind: macOS-intel
+          - kind: macOS
             os: macos-12
             target: osx-x64
     runs-on: ${{ matrix.os }}
