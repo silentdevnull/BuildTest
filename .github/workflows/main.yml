@@ -32,6 +32,14 @@ jobs:
             target: osx-x64
     runs-on: ${{ matrix.os }}
     steps:
+      - name: GitTags
+        run: |
+          git describe --tags
+          gtags=$(git describe --tags)
+          gtagss=$(git describe --tags --abbrev=0)
+          echo $gtags
+          echo $gtagss
+          
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -41,7 +49,6 @@ jobs:
           dotnet-version: '8.x.x'
           dotnet-quality: 'preview'
           
-
       - name: Build
         shell: bash
         run: |
