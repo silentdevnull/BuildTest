@@ -34,12 +34,11 @@ jobs:
     steps:        
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Get Fetch Tags
-        run: git fetch --tags
+
         
       - name: GitTags
         run: |
-          git fetch --tags --always
+          git fetch --tags
           git describe --tags
           gtags=$(git describe --tags)
           gtagss=$(git describe --tags --abbrev=0)
