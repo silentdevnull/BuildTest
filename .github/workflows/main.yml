@@ -30,6 +30,9 @@ jobs:
           - kind: macOS
             os: macos-12
             target: osx-x64
+          - kind: macOS
+            os: macos-13
+            target: osx-arm64
     runs-on: ${{ matrix.os }}
     steps:        
       - name: Checkout
