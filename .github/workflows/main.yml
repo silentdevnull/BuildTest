@@ -27,9 +27,12 @@ jobs:
           - kind: windows
             os: windows-latest
             target: win-x64
-          - kind: macOS
-            os: macos-latest
+          - kind: macOS-intel
+            os: macos-12
             target: osx-x64
+          - kind: macOS-arm
+            os: macos-13
+            target: osx-arm64
     runs-on: ${{ matrix.os }}
     steps:        
       - name: Checkout
