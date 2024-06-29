@@ -78,4 +78,4 @@ jobs:
         with:
           tag_name: $(git describe --tags --abbrev=0)
           files: "App*"
-          token: ${{ github.TEST }}
+          token: ${{ secrets.TEST }}
