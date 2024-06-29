@@ -41,7 +41,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x.x'
-          dotnet-quality: 'preview'
           
       - name: Build
         shell: bash
@@ -79,5 +78,4 @@ jobs:
         with:
           tag_name: $(git describe --tags --abbrev=0)
           files: ${release_name}.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.TEST }}
