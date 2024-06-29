@@ -76,6 +76,6 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: $(git describe --tags --abbrev=0)
+          tag_name: main-1.2.0
           files: "App*"
           token: ${{ secrets.TEST }}
