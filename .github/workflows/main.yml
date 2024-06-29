@@ -52,17 +52,19 @@ jobs:
           tag=$(git describe --tags --abbrev=0 --always)
           release_name="App-$tag-${{ matrix.target }}"
 
+          dotnet clean
+          dotnet restore
+
           # Build everything
           dotnet publish src/buildtest/buildtest.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" /p:Version=$tag -p:PublishSingleFile=true --self-contained true 
+          
           # Delete pdb file
           rm -fr $release_name/buildtest.pdb
+          
           # Pack files
-          if [ "${{ matrix.target }}" == "win-x64" ]; then
-            # Pack to zip for Windows
-            7z a -tzip "${release_name}.zip" "./${release_name}/*"
-          else
+          
           tar czvf "${release_name}.tar.gz" "$release_name"
-          fi
+          
           ls -la
           ls -la $release_name
           # Delete output directory
