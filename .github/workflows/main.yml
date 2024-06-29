@@ -37,9 +37,6 @@ jobs:
         with:
           fetch-depth: 500
 
-      - name: git ref
-        run: echo ${{ github.ref }}
-
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
@@ -54,6 +51,8 @@ jobs:
 
           dotnet clean 
           dotnet restore
+          
+          echo $tag
 
           # Build everything
           dotnet publish ./src/buildtest/buildtest.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" /p:Version=$tag -p:PublishSingleFile=true --self-contained true 
