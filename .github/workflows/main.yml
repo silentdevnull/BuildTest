@@ -61,7 +61,8 @@ jobs:
 
           # Build everything
           dotnet publish src/buildtest/buildtest.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" /p:Version=$tag -p:PublishSingleFile=true --self-contained true 
-
+          # Delete pdb file
+          rm -fr $release_name/buildtest.pdb
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
@@ -72,7 +73,7 @@ jobs:
           ls -la
           ls -la $release_name
           # Delete output directory
-          #rm -rf "$release_name"
+          rm -rf "$release_name"
 
       - name: Publish
         uses: softprops/action-gh-release@v2
