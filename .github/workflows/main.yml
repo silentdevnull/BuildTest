@@ -32,7 +32,7 @@ jobs:
             target: osx-x64
           - kind: macOS-arm
             os: macos-13
-            target: osx-arm64
+            target: osx-arm
     runs-on: ${{ matrix.os }}
     steps:        
       - name: Checkout
