@@ -70,11 +70,9 @@ jobs:
           tar czvf "${release_name}.tar.gz" "$release_name"
           fi
           ls -la
+          ls -la $release_name
           # Delete output directory
-          #rm -r "$release_name"
-
-      - name: github ref 
-        run: echo $github.ref
+          #rm -rf "$release_name"
 
       - name: Publish
         uses: softprops/action-gh-release@v2
