@@ -62,6 +62,9 @@ jobs:
           # Delete output directory
           #rm -r "$release_name"
 
+      - name: github ref 
+        run: echo $github.ref
+        
       - name: Publish
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
