@@ -46,6 +46,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
+          echo ${{ github.ref }}
           git describe --tags --abbrev=0
           tag=$(git describe --tags --abbrev=0)
           release_name="App-$tag-${{ matrix.target }}"
@@ -74,8 +75,9 @@ jobs:
           rm -rf "$release_name"
 
       - name: Publish
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: "App*"
+          files: "*.tar.gz"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
